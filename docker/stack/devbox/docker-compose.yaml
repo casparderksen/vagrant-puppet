@@ -1,0 +1,70 @@
+version: "3.1"
+
+services:
+  jenkins:
+    image: my/jenkins
+    ports:
+      - "8080:8080"
+    networks:
+      - devnet
+    volumes:
+      - "jenkins_home:/var/jenkins_home"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    secrets:
+      - jenkins-user
+      - jenkins-password
+      - maven-master-password
+
+  nginx:
+    image: my/nginx
+    ports:
+      - "80:80"
+    networks:
+      - devnet      
+
+  registry:
+    image: registry:2
+    ports:
+      - "5000:5000"
+    networks:
+      - devnet
+    volumes:
+      - "registry:/var/lib/registry"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+  weblogic:
+    image: my/weblogic
+    ports:
+      - 7001:7001
+    networks:
+      - devnet
+
+  oradb:
+    image: my/oradb
+    volumes:
+      - "oradata:/ORCL" # persistent oracle database data.
+    ports:
+      - 1521:1521
+      - 5500:5500
+    networks:
+      - devnet
+  
+volumes:
+  jenkins_home:
+  registry:
+  oradata:
+
+networks:
+  devnet:
+
+secrets:
+  jenkins-user:
+    file: /etc/docker-secrets/jenkins-user
+  jenkins-password:
+    file: /etc/docker-secrets/jenkins-password
+  maven-master-password:
+    file: /etc/docker-secrets/maven-master-password

@@ -1,0 +1,36 @@
+---
+version: 5
+
+classes:
+  - roles::elk
+
+elasticsearch_urls: &elasticsearch_urls
+  - 'http://localhost:9200'
+
+logstash_hosts: &logstash_hosts
+  - localhost:5044
+
+kibana_host: &kibana_host localhost:5601
+
+# Elasticserch
+profiles::elk::elasticsearch::cluster_name: logging-dev
+profiles::elk::elasticsearch::jvm_options:
+  - '-Des.enforce.bootstrap.checks=true'
+  - '-XX:-HeapDumpOnOutOfMemoryError'
+  - '-Xms1g'
+  - '-Xmx1g'
+
+# Logstash
+profiles::elk::logstash::pipelines::beats::elasticsearch_urls: *elasticsearch_urls
+profiles::elk::logstash::jvm_options:
+  - '-XX:-HeapDumpOnOutOfMemoryError'
+  - '-Xms1g'
+  - '-Xmx1g'
+
+# Filebeat
+profiles::elk::filebeat::logstash_hosts: *logstash_hosts
+profiles::elk::filebeat::kibana_host: *kibana_host
+
+# Metricbeat
+profiles::elk::metricbeat::logstash_hosts: *logstash_hosts
+profiles::elk::metricbeat::kibana_host: *kibana_host

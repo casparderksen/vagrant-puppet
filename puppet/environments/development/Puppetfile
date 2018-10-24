@@ -1,0 +1,40 @@
+forge "http://forge.puppetlabs.com"
+
+# Standard PuppetLabs modules
+mod 'puppetlabs-concat', '4.2.1'
+mod 'puppetlabs-stdlib', '4.25.0'
+
+# Apache
+mod 'puppetlabs-apache', '3.1.0'
+
+# SELinux
+mod 'puppet-selinux', '1.5.2'
+
+# Yum
+mod 'puppet-yum', '2.2.1'
+
+# Docker host
+mod 'puppetlabs-docker', '1.1.0'
+mod 'puppetlabs-translate', '1.1.0'
+
+# Puppet Docker image build
+mod 'puppetlabs-dummy_service', '0.2.0'
+mod 'puppetlabs-image_build', '0.7.0'
+
+# Java
+mod 'puppetlabs-java', '2.4.0'
+mod 'puppet-archive', '2.3.0'
+mod 'puppetlabs-java_ks', '2.2.0'
+
+# Apache Maven
+mod 'maestrodev-maven', '1.4.0'
+mod 'maestrodev-wget', '1.7.3'
+
+# Node
+mod 'puppet-nodejs', '5.0.0'
+
+# ELK
+mod 'elastic-elasticsearch', '6.2.2'
+mod 'elastic-logstash', '6.1.0'
+mod 'elastic-kibana', '6.0.1'
+mod 'richardc-datacat', '0.6.2'

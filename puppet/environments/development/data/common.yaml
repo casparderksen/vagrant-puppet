@@ -1,0 +1,5 @@
+---
+version: 5
+
+# Jenkins admin user
+profiles::docker::jenkins::admin_user: jenkins
