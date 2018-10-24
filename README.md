@@ -1,13 +1,15 @@
 # Vagrant development box for Puppet
 
-This project used a basebox from 
+This project uses a basebox from 
 [https://github.com/casparderksen/packer-kickstart-vagrant](https://github.com/casparderksen/packer-kickstart-vagrant).
 
-This project is intended to be used behind a corporate firewall, meaning manual donwload of dependencies.
+The basebox has Puppet pre-installed. This project contains roles and profiles for
+installing various tools such as Docker, Elasticstack and a number of development tools.
 
 # Dependencies
 
-Download the following files:
+This project is intended to be used behind a corporate firewall, meaning manual donwload of dependencies.
+Download the following files (depending in the Puppet profiles used):
 
 	files/tools/packer_1.2.2_linux_amd64.zip
 	files/tools/apache-maven-3.5.3-bin.tar.gz
